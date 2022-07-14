@@ -26,4 +26,4 @@ class GroupViewSet(viewsets.ModelViewSet):
 class ListUsersView(APIView):
 
     def get(self, request, format=None):
-        return Response({""})
+        return Response()
