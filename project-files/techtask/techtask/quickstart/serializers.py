@@ -18,8 +18,9 @@ class GroupSerializer(serializers.HyperlinkedModelSerializer):
 class PersonSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Person
+        fields = ['first_name', 'last_name', 'phone_number']
 
 class ListPersonsSerializer(serializer.HyperlinkedModelSerialezer):
     class Meta:
         model = PersonsList
-        fields = []
+        fields = ['Persons']

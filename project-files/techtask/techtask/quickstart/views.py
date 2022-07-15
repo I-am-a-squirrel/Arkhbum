@@ -24,6 +24,7 @@ class GroupViewSet(viewsets.ModelViewSet):
     permission_classes = [permissions.IsAuthenticated]
 
 class UsersListView(APIView):
+    queryset = PersonsList.objects.all()
 
-    def get(self, request, format=None):
+    def get(self, request, format = None):
         return Response()
