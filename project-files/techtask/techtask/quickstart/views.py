@@ -23,7 +23,7 @@ class GroupViewSet(viewsets.ModelViewSet):
     serializer_class = GroupSerializer
     permission_classes = [permissions.IsAuthenticated]
 
-class ListUsersView(APIView):
+class UsersListView(APIView):
 
     def get(self, request, format=None):
         return Response()

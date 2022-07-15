@@ -21,5 +21,5 @@ class PersonSerializer(serializers.HyperlinkedModelSerializer):
 
 class ListPersonsSerializer(serializer.HyperlinkedModelSerialezer):
     class Meta:
-        model = Person
+        model = PersonsList
         fields = []
