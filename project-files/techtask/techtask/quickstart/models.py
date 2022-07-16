@@ -1,6 +1,5 @@
 from django.db import models
 from django.core.serializers.json import DjangoJSONEncoder
-import uuid
 
 class Person(Models.model):
     id = models.BigAutoField(primary_key = True)
