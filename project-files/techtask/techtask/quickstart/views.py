@@ -3,7 +3,7 @@ from django.shortcuts import render
 from django.contrib.auth.models import User, Group
 from rest_framework import viewsets
 from rest_framework import permissions
-from techtask.quickstart.serializers import UserSerializer, GroupSerializer
+from techtask.quickstart.serializers import UserSerializer, GroupSerializer, PersonSerializer, ListPersonsSerializer
 
 
 class UserViewSet(viewsets.ModelViewSet):
@@ -23,8 +23,9 @@ class GroupViewSet(viewsets.ModelViewSet):
     serializer_class = GroupSerializer
     permission_classes = [permissions.IsAuthenticated]
 
-class UsersListView(APIView):
+class ListPersonsView(APIView):
     queryset = PersonsList.objects.all()
+    serializer_class = ListPersonsSerializer
 
     def get(self, request, format = None):
         return Response()
