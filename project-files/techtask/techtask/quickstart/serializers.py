@@ -1,8 +1,7 @@
 from django.contrib.auth.models import User, Group
 from rest_framework import serializers
 from rest_framework.renderers import JSONRenderer
-from models import Person
-
+from techtask.quickstart.models import Person
 
 class UserSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:

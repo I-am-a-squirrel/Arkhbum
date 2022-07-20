@@ -4,7 +4,7 @@ from django.contrib.auth.models import User, Group
 from rest_framework import viewsets
 from rest_framework import permissions
 from techtask.quickstart.serializers import UserSerializer, GroupSerializer, PersonSerializer, ListPersonsSerializer
-
+from techtask.permissions import IsOwnerOrReadOnly
 
 class UserViewSet(viewsets.ModelViewSet):
     """
@@ -23,9 +23,12 @@ class GroupViewSet(viewsets.ModelViewSet):
     serializer_class = GroupSerializer
     permission_classes = [permissions.IsAuthenticated]
 
-class ListPersonsView(APIView):
-    queryset = PersonsList.objects.all()
-    serializer_class = ListPersonsSerializer
+class ListHTMLPersonsView(APIView):
+    queryset = Person.objects.all()
+    #serializer_class = ListPersonsSerializer
+    renderer_classes = [TemplateHTMLRenderer]
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly, IsOwnerOrReadOnly]
 
-    def get(self, request, format = None):
-        return Response()
+    def get(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        return Response({'Persons': self.object}, template_name='persons-list.html')

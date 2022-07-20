@@ -1,8 +1,8 @@
 from django.db import models
 
-class Person(Models.model):
+class Person(models.Model):
     id = models.BigAutoField(primary_key = True)
-    owner = models.ForeignKey('auth.User', related_name='snippets', on_delete=models.CASCADE)
+    owner = models.ForeignKey('auth.User', related_name='Person', on_delete=models.CASCADE)
     highlighted = models.TextField()
     first_name = models.CharField(max_length = 50)
     last_name = models.CharField(max_length = 50)
@@ -16,5 +16,4 @@ class Person(Models.model):
         ordering = ['created']
 
 class PersonsList(Models.model):
-    #id = models.BigAutoField(primary_key = True) #нужен ли идентификатор?
     pass
