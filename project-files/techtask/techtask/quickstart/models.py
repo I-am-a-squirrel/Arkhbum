@@ -2,8 +2,8 @@ from django.db import models
 
 class Person(models.Model):
     id = models.BigAutoField(primary_key = True)
-    owner = models.ForeignKey('auth.User', related_name='Person', on_delete=models.CASCADE)
-    highlighted = models.TextField()
+    owner = models.ForeignKey('auth.User', related_name='quickstart', on_delete=models.CASCADE)
+    #highlighted = models.TextField()
     first_name = models.CharField(max_length = 50)
     last_name = models.CharField(max_length = 50)
     phone_number = models.CharField(max_length = 20)
@@ -15,5 +15,6 @@ class Person(models.Model):
     class Meta:
         ordering = ['created']
 
-class PersonsList(Models.model):
+class PersonsList(models.Model):
     pass
+    #id = models.BigAutoField(primary_key = True)
