@@ -1,8 +1,12 @@
 from django.shortcuts import render
 
 from django.contrib.auth.models import User, Group
-from rest_framework import viewsets
-from rest_framework import permissions
+
+from rest_framework import viewsets, permissions
+from rest_framework.renderers import TemplateHTMLRenderer
+from rest_framework.views import APIView
+
+from techtask.quickstart.models import Person
 from techtask.quickstart.serializers import UserSerializer, GroupSerializer, PersonSerializer, ListPersonsSerializer
 from techtask.permissions import IsOwnerOrReadOnly
 
