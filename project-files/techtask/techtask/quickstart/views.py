@@ -1,6 +1,5 @@
-from django.shortcuts import render
-
 from django.contrib.auth.models import User, Group
+from django.shortcuts import render
 
 from rest_framework import viewsets, permissions
 from rest_framework.renderers import TemplateHTMLRenderer
@@ -34,5 +33,6 @@ class ListHTMLPersonsView(APIView):
     permission_classes = [permissions.IsAuthenticatedOrReadOnly, IsOwnerOrReadOnly]
 
     def get(self, request, *args, **kwargs):
-        self.object = self.get_object()
+        #self.object = self.get_object()
+        self.object = self.queryset
         return Response({'Persons': self.object}, template_name='persons-list.html')
