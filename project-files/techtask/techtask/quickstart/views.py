@@ -2,7 +2,8 @@ from django.contrib.auth.models import User, Group
 from django.shortcuts import render
 
 from rest_framework import viewsets, permissions
-from rest_framework.renderers import TemplateHTMLRenderer
+from rest_framework.renderers import BrowsableAPIRenderer, TemplateHTMLRenderer
+from rest_framework.response import Response
 from rest_framework.views import APIView
 
 from techtask.quickstart.models import Person
@@ -28,11 +29,10 @@ class GroupViewSet(viewsets.ModelViewSet):
 
 class ListHTMLPersonsView(APIView):
     queryset = Person.objects.all()
-    #serializer_class = ListPersonsSerializer
     renderer_classes = [TemplateHTMLRenderer]
     permission_classes = [permissions.IsAuthenticatedOrReadOnly, IsOwnerOrReadOnly]
 
     def get(self, request, *args, **kwargs):
         #self.object = self.get_object()
         self.object = self.queryset
-        return Response({'Persons': self.object}, template_name='persons-list.html')
+        return Response({'Persons': self.object}, template_name='all-persons-list.html')
