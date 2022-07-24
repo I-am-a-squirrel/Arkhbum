@@ -58,7 +58,7 @@ ROOT_URLCONF = 'techtask.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['/templates/quickstart'],
+        'DIRS': [BASE_DIR / 'techtask/templates/quickstart'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

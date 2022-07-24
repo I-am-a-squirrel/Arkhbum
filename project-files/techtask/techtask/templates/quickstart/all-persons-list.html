@@ -1,3 +1,9 @@
-{% extends 'quickstart/base.html' %}
+{% extends 'base.html' %}
 
-
+{% block main_information %}
+<ul>
+  {% for person in Persons %}
+  <li>person</li>
+  {% endfor %}
+</ul>
+{% endblock %}
