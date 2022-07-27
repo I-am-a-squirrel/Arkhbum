@@ -9,9 +9,6 @@ class Person(models.Model):
 
     def __str__(self):
         return '%s %s' % (self.first_name, self.last_name)
-#
-#    class Meta:
-#        ordering = ['created']
 
 class PersonsList(models.Model):
     id = models.BigAutoField(primary_key = True)

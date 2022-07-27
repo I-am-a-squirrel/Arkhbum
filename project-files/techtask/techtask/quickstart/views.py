@@ -33,6 +33,13 @@ class ListHTMLPersonsView(APIView):
     permission_classes = [permissions.IsAuthenticatedOrReadOnly, IsOwnerOrReadOnly]
 
     def get(self, request, *args, **kwargs):
-        #self.object = self.get_object()
         self.object = self.queryset
         return Response({'Persons': self.object}, template_name='all-persons-list.html')
+
+class ShowHTMLPersonSet(viewsets.GenericViewSet):
+    queryset = Person.objects.all()
+    serializer_class = PersonSerializer
+    renderer_classes = [TemplateHTMLRenderer]
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly, IsOwnerOrReadOnly]
+
+    
