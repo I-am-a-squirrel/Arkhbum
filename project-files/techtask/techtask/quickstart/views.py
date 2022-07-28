@@ -36,12 +36,14 @@ class ListHTMLPersonsView(APIView):
 
     def get(self, request, *args, **kwargs):
         self.object = self.queryset
-        return Response({'Persons': self.object}, template_name='all-persons-list.html')
+        return Response({'Persons': self.object}, template_name = 'all-persons-list.html')
 
 class ShowHTMLPersonSet(GenericViewSet, RetrieveModelMixin):
     queryset = Person.objects.all()
-    serializer_class = PersonSerializer
     renderer_classes = [TemplateHTMLRenderer]
     permission_classes = [IsAuthenticatedOrReadOnly, IsOwnerOrReadOnly]
 
-    
+    def get(self, request, *args, **kwargs):
+        self.object = self.retrieve(request, *args, **kwargs)
+        return Response({'Person': self.object}, template_name = 'persons-profile.html')
+
