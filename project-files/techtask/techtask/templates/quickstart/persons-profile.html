@@ -1,5 +1,10 @@
 {% extends 'base.html' %}
 
 {% block main_information %}
-
+<h2/>Профиль сотрудника</h2>
+<ul>
+  <li>Имя: {{ Person.first_name }}</li>
+  <li>Фамилия: {{ Person.last_name }}</li>
+  <li>Номер телефона: {{ Person.phone_number }}</li>
+</ul>
 {% endblock %}
