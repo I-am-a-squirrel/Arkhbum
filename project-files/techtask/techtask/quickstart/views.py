@@ -41,6 +41,7 @@ class ListHTMLPersonsView(APIView):
 class ShowHTMLPersonSet(GenericViewSet, RetrieveModelMixin):
     queryset = Person.objects.all()
     serializer_class = PersonSerializer
+    lookup_field = [phone_number]
     renderer_classes = [TemplateHTMLRenderer]
     permission_classes = [IsAuthenticatedOrReadOnly, IsOwnerOrReadOnly]
 
