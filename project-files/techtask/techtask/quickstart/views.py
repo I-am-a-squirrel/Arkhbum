@@ -1,5 +1,5 @@
 from django.contrib.auth.models import User, Group
-from django.shortcuts import render
+from django.shortcuts import get_object_or_404, render
 
 from rest_framework.mixins import RetrieveModelMixin
 from rest_framework.permissions import IsAuthenticated, IsAuthenticatedOrReadOnly
