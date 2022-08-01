@@ -39,7 +39,7 @@ class ListHTMLPersonsView(APIView):
         return Response({'Persons': self.object}, template_name = 'all-persons-list.html')
 
 class ShowHTMLPersonSet(GenericViewSet, RetrieveModelMixin):
-    queryset = Person.objects.all()
+    #queryset = Person.objects.all()
     serializer_class = PersonSerializer
     lookup_field = 'phone_number'
     renderer_classes = [TemplateHTMLRenderer]
@@ -49,7 +49,8 @@ class ShowHTMLPersonSet(GenericViewSet, RetrieveModelMixin):
     #    self.object = self.retrieve(request, *args, **kwargs)
     #    return Response({'Person': self.object}, template_name = 'persons-profile.html')
 
-    def retrieve(self, request, pk = None):
-        person = get_object_or_404(queryset, pk = pk)
+    def retrieve(self, request, *args, **kwargs):
+        queryset = Person.objects.get(phone_number = pk)
+        person = get_object_or_404(self.queryset, self.lookup_field)
         serializer = PersonSerializer(person)
         return Response({'Person': serializer.data}, template_name = 'persons-profile.html')
