@@ -45,7 +45,11 @@ class ShowHTMLPersonSet(GenericViewSet, RetrieveModelMixin):
     renderer_classes = [TemplateHTMLRenderer]
     permission_classes = [IsAuthenticatedOrReadOnly, IsOwnerOrReadOnly]
 
-    def get(self, request, *args, **kwargs):
-        self.object = self.retrieve(request, *args, **kwargs)
-        return Response({'Person': self.object}, template_name = 'persons-profile.html')
+    #def get(self, request, *args, **kwargs):
+    #    self.object = self.retrieve(request, *args, **kwargs)
+    #    return Response({'Person': self.object}, template_name = 'persons-profile.html')
 
+    def retrieve(self, request, pk = None):
+        person = get_object_or_404(queryset, pk = pk)
+        serializer = PersonSerializer(person)
+        return Response({'Person': serializer.data}, template_name = 'persons-profile.html')
