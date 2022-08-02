@@ -46,7 +46,7 @@ class ShowHTMLPersonSet(GenericViewSet, RetrieveModelMixin):
     permission_classes = [IsAuthenticatedOrReadOnly, IsOwnerOrReadOnly]
 
     def retrieve(self, request, *args, **kwargs):
-        queryset = Person.objects.filter(phone_number = kwargs["phone_number"])
+        queryset = Person.phone_objects.all(kwargs["phone_number"])
         person = get_object_or_404(queryset, self.lookup_field)
         serializer = PersonSerializer(person)
         return Response({'Person': serializer.data}, template_name = 'persons-profile.html')
