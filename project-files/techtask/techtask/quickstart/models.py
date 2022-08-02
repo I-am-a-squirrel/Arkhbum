@@ -2,7 +2,10 @@ from django.db import models
 
 class PhonePersonManager(models.Manager):
     def all(self, number):
-        return {'Person': super().get_queryset().filter(phone_number = number), 'phone_number': Person.phone_number}
+        queryset = super().get_queryset().filter(phone_number = number)
+        person_name = queryset[0]
+        print("person_name: {}".format(person_name))
+        return {'Person': person_name, 'phone_number': number}
 
 class Person(models.Model):
     id = models.BigAutoField(primary_key = True)
@@ -16,9 +19,6 @@ class Person(models.Model):
 
     def __str__(self):
         return '%s %s' % (self.first_name, self.last_name)
-
-    #def phone_number_dict(self):
-    #    return {'Person': '%s %s' % (self.first_name, self.last_name), 'phone_number': '%s' % (self.phone_number)}
 
 class PersonsList(models.Model):
     id = models.BigAutoField(primary_key = True)

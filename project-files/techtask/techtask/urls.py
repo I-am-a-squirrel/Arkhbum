@@ -21,7 +21,7 @@ from techtask.quickstart import views
 router = routers.DefaultRouter()
 router.register(r'users', views.UserViewSet)
 router.register(r'groups', views.GroupViewSet)
-router.register(r'person', views.ShowHTMLPersonSet, basename = 'persons-profile')
+router.register(r'person-html', views.ShowHTMLPersonSet, basename = 'persons-profile')
 
 urlpatterns = [
     path('', include(router.urls)),
