@@ -23,5 +23,6 @@ class PersonSerializer(HyperlinkedModelSerializer):
     def create(self, validated_data):
         return Person(**validated_data)
 
-    def update(self, instance, validated_data):
-        instance.first_name = validated_data.get('first_name', instance.first_name)
+#class PersonsListSerializer(HyperlinkedModelSerializer):
+#    class Meta:
+#        model = PersonsList

@@ -27,5 +27,6 @@ urlpatterns = [
     path('', include(router.urls)),
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     path('admin/', admin.site.urls),
-    path('persons-list/', views.ListHTMLPersonsView.as_view()),
+    path('persons-list-html/', views.ListHTMLPersonsView.as_view()),
+    path('persons-list-json/', views.ListJSONPersonsView.as_view()),
 ]

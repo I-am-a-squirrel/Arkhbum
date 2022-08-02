@@ -3,7 +3,7 @@ from django.shortcuts import get_object_or_404, render
 
 from rest_framework.mixins import RetrieveModelMixin
 from rest_framework.permissions import IsAuthenticated, IsAuthenticatedOrReadOnly
-from rest_framework.renderers import BrowsableAPIRenderer, TemplateHTMLRenderer
+from rest_framework.renderers import BrowsableAPIRenderer, TemplateHTMLRenderer, JSONRenderer
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework.viewsets import GenericViewSet, ModelViewSet
@@ -50,3 +50,17 @@ class ShowHTMLPersonSet(GenericViewSet, RetrieveModelMixin):
         serializer = PersonSerializer(person)
         print("serializer.data: {}".format(serializer.data))
         return Response({'Person': serializer.data}, template_name = 'persons-profile.html')
+
+class ListJSONPersonsView(APIView):
+    #queryset = Person.objects.all()
+    serializer_class = PersonSerializer
+    renderer_classes = [JSONRenderer]
+    permission_classes = [IsAuthenticatedOrReadOnly, IsOwnerOrReadOnly]
+
+    def get(self, request, *args, **kwargs):
+        queryset = Person.objects.all()
+        persons_list = list()
+        for person in queryset:
+            serializer = PersonSerializer(person)
+            persons_list.append(serializer.data)
+        return Response(persons_list)
