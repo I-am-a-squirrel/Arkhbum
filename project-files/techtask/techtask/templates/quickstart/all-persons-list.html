@@ -4,7 +4,7 @@
 <h2>Список сотрудников</h2>
 <ul>
   {% for person in Persons.all %}
-  <li>{{ person }}</li>
+  <li><a href="/person-html/{{ person.phone_number }}">{{ person }}</a></li>
   {% endfor %}
 </ul>
 {% endblock %}
